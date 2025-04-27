@@ -1,0 +1,22 @@
+# Vinyl Store Genre Images
+
+Download each image from the link below and save it in this folder with the specified filename:
+
+ROCK (rock.jpg):
+https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=400&q=80
+
+JAZZ (jazz.jpg):
+https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=400&q=80
+
+CLASSICAL (classical.jpg):
+https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80
+
+POP (pop.jpg):
+https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=crop&w=400&q=80
+
+---
+Instructions:
+1. Click each link to open the image in your browser.
+2. Right-click the image and choose "Save image as..."
+3. Save as the correct filename (rock.jpg, jazz.jpg, classical.jpg, pop.jpg) in this folder.
+4. Refresh your website to see the images appear.

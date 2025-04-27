@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Vinyl Store</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/animations.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <img src="assets/icons/vinyl-icon.png" alt="Vinyl Store Logo">
+                <h1>Vinyl Store</h1>
+            </div>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="records.html">Browse Records</a>
+                <a href="cart.html">Cart <span id="cart-count">0</span></a>
+                <div class="auth-links">
+                    <a href="login.html" class="active">Login</a>
+                    <a href="register.html">Register</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <div class="auth-container">
+            <div class="auth-card">
+                <h2>Welcome Back</h2>
+                
+                <form id="login-form" class="auth-form">
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <div class="password-input">
+                            <input type="password" id="password" name="password" required>
+                            <button type="button" class="toggle-password" aria-label="Toggle password visibility">
+                                <img src="assets/icons/eye.svg" alt="Toggle password visibility">
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="form-options">
+                        <label class="remember-me">
+                            <input type="checkbox" name="remember" id="remember">
+                            <span>Remember me</span>
+                        </label>
+                        <a href="#" class="forgot-password">Forgot password?</a>
+                    </div>
+
+                    <button type="submit" class="auth-button">Login</button>
+
+                    <div class="social-login">
+                        <p>Or login with</p>
+                        <div class="social-buttons">
+                            <button type="button" class="social-button google">
+                                <img src="assets/icons/google.svg" alt="Google">
+                                Google
+                            </button>
+                            <button type="button" class="social-button facebook">
+                                <img src="assets/icons/facebook.svg" alt="Facebook">
+                                Facebook
+                            </button>
+                        </div>
+                    </div>
+                </form>
+
+                <div class="auth-footer">
+                    <p>Don't have an account? <a href="register.html">Register here</a></p>
+                </div>
+            </div>
+
+            <div class="auth-benefits">
+                <h3>Why Join Us?</h3>
+                <ul>
+                    <li>
+                        <img src="assets/icons/vinyl-icon.png" alt="Collection">
+                        <div>
+                            <h4>Extensive Collection</h4>
+                            <p>Access to thousands of vinyl records across all genres</p>
+                        </div>
+                    </li>
+                    <li>
+                        <img src="assets/icons/vinyl-icon.png" alt="Deals">
+                        <div>
+                            <h4>Exclusive Deals</h4>
+                            <p>Get special discounts and early access to new releases</p>
+                        </div>
+                    </li>
+                    <li>
+                        <img src="assets/icons/vinyl-icon.png" alt="Community">
+                        <div>
+                            <h4>Join the Community</h4>
+                            <p>Connect with fellow vinyl enthusiasts</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Password Reset Modal -->
+        <div id="password-reset-modal" class="modal hidden">
+            <div class="modal-content">
+                <h2>Reset Password</h2>
+                <form id="reset-password-form">
+                    <div class="form-group">
+                        <label for="reset-email">Email Address</label>
+                        <input type="email" id="reset-email" name="email" required>
+                    </div>
+                    <div class="modal-body">
+                        <p>Enter your email address and we'll send you instructions to reset your password.</p>
+                    </div>
+                    <button type="submit" class="auth-button">Send Reset Link</button>
+                    <button type="button" id="cancel-reset" class="secondary-button">Cancel</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Notification Container -->
+        <div id="notification-container"></div>
+    </main>
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>About Us</h3>
+                <p>Vinyl Store is your premier destination for high-quality vinyl records. We offer a carefully curated selection of new and vintage records across all genres.</p>
+                <div class="social-links">
+                    <a href="#"><img src="assets/icons/facebook.svg" alt="Facebook"></a>
+                    <a href="#"><img src="assets/icons/twitter.svg" alt="Twitter"></a>
+                    <a href="#"><img src="assets/icons/instagram.svg" alt="Instagram"></a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="records.html">Browse Records</a></li>
+                    <li><a href="cart.html">Shopping Cart</a></li>
+                    <li><a href="login.html">Login</a></li>
+                    <li><a href="register.html">Register</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Categories</h3>
+                <ul>
+                    <li><a href="#">Rock</a></li>
+                    <li><a href="#">Jazz</a></li>
+                    <li><a href="#">Classical</a></li>
+                    <li><a href="#">Pop</a></li>
+                    <li><a href="#">Electronic</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Newsletter</h3>
+                <p>Subscribe to our newsletter for the latest releases and exclusive offers.</p>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Enter your email">
+                    <button type="submit">Subscribe</button>
+                </form>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Vinyl Store. All rights reserved.</p>
+        </div>
+    </footer>
+    <script src="js/auth.js"></script>
+</body>
+</html>

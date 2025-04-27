@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Confirmation - Vinyl Store</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/animations.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <img src="assets/icons/vinyl-icon.png" alt="Vinyl Store Logo">
+                <h1>Vinyl Store</h1>
+            </div>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="records.html">Browse Records</a>
+                <a href="cart.html">Cart <span id="cart-count">0</span></a>
+                <div class="auth-links">
+                    <a href="login.html" id="login-link">Login</a>
+                    <a href="register.html" id="register-link">Register</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <div class="order-confirmation">
+            <div class="success-animation">
+                <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+                    <circle class="checkmark-circle" cx="26" cy="26" r="25" fill="none"/>
+                    <path class="checkmark-check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
+                </svg>
+            </div>
+            
+            <h1>Thank You for Your Order!</h1>
+            <p class="order-id">Order ID: <span id="order-number"></span></p>
+            
+            <div class="order-details">
+                <h2>Order Details</h2>
+                <div id="order-items"></div>
+                
+                <div class="order-summary">
+                    <div class="summary-row">
+                        <span>Subtotal:</span>
+                        <span id="subtotal"></span>
+                    </div>
+                    <div class="summary-row">
+                        <span>Shipping:</span>
+                        <span id="shipping"></span>
+                    </div>
+                    <div class="summary-row total">
+                        <span>Total:</span>
+                        <span id="total"></span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="shipping-info">
+                <h2>Shipping Information</h2>
+                <div id="shipping-details"></div>
+                <p class="estimated-delivery">Estimated delivery: <span id="delivery-date"></span></p>
+            </div>
+            
+            <div class="order-actions">
+                <a href="records.html" class="cta-button">Continue Shopping</a>
+                <a href="orders.html" class="secondary-button">View All Orders</a>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>About Us</h3>
+                <p>Your premier destination for vinyl records. We specialize in both new and vintage records across all genres.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="records.html">Browse Records</a></li>
+                    <li><a href="cart.html">Shopping Cart</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Newsletter</h3>
+                <form id="newsletter-form" class="newsletter-form">
+                    <input type="email" placeholder="Enter your email">
+                    <button type="submit">Subscribe</button>
+                </form>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Vinyl Store. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <div id="notification-container"></div>
+
+    <script src="js/api.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            // Get order ID from URL parameters
+            const params = new URLSearchParams(window.location.search);
+            const orderId = params.get('id');
+            
+            if (!orderId) {
+                window.location.href = 'index.html';
+                return;
+            }
+            
+            try {
+                // Fetch order details from API
+                const order = await api.getOrder(orderId);
+                
+                // Update order number
+                document.getElementById('order-number').textContent = order.OrderID;
+                
+                // Display order items
+                const orderItemsContainer = document.getElementById('order-items');
+                orderItemsContainer.innerHTML = order.Details.map(item => `
+                    <div class="order-item">
+                        <img src="${item.CoverImageURL || 'assets/images/default-album.png'}" alt="${item.Title}">
+                        <div class="item-details">
+                            <h3>${item.Title}</h3>
+                            <p>${item.Artist}</p>
+                            <p>Quantity: ${item.Quantity}</p>
+                        </div>
+                        <div class="item-price">$${item.Subtotal.toFixed(2)}</div>
+                    </div>
+                `).join('');
+                
+                // Update summary
+                document.getElementById('subtotal').textContent = `$${order.TotalAmount.toFixed(2)}`;
+                document.getElementById('shipping').textContent = `$${order.ShippingCost.toFixed(2)}`;
+                document.getElementById('total').textContent = `$${(order.TotalAmount + order.ShippingCost).toFixed(2)}`;
+                
+                // Update shipping details
+                document.getElementById('shipping-details').innerHTML = `
+                    <p>${order.ShippingAddress}</p>
+                    <p>Shipping Method: ${order.ShippingMethod}</p>
+                    ${order.TrackingNumber ? `<p>Tracking Number: ${order.TrackingNumber}</p>` : ''}
+                `;
+                
+                // Set estimated delivery date (3-5 business days from order date)
+                const orderDate = new Date(order.OrderDate);
+                const deliveryDate = new Date(orderDate);
+                deliveryDate.setDate(deliveryDate.getDate() + 5);
+                document.getElementById('delivery-date').textContent = deliveryDate.toLocaleDateString('en-US', {
+                    weekday: 'long',
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric'
+                });
+                
+            } catch (error) {
+                showNotification('Error loading order details', 'error');
+                console.error('Error:', error);
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Cart - Vinyl Haven</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/animations.css">
+</head>
+<body>
+    <header>
+        <nav class="main-nav">
+            <a href="index.html" class="logo">Vinyl Haven</a>
+            <div class="nav-links">
+                <a href="records.html">Browse Records</a>
+                <a href="cart.html" class="active">Cart</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="cart-container">
+        <h1>Your Shopping Cart</h1>
+        
+        <div id="loading-spinner" class="loading-spinner hidden">
+            <div class="spinner"></div>
+            <p>Loading your cart...</p>
+        </div>
+
+        <div id="error-message" class="error-message hidden">
+            <p>There was an error loading your cart. Please try again.</p>
+            <button onclick="loadCart()" class="retry-button">Retry</button>
+        </div>
+
+        <div id="empty-cart" class="empty-cart-message hidden">
+            <p>Your cart is empty</p>
+            <a href="records.html" class="cta-button">Browse Records</a>
+        </div>
+
+        <div id="cart-items" class="cart-items">
+            <!-- Cart items will be dynamically inserted here -->
+        </div>
+
+        <div id="cart-summary" class="cart-summary hidden">
+            <div class="summary-details">
+                <p>Subtotal: <span id="subtotal">$0.00</span></p>
+                <p>Shipping: <span id="shipping">$5.00</span></p>
+                <p class="total">Total: <span id="total">$0.00</span></p>
+            </div>
+            <button id="checkout-button" class="checkout-button">
+                Proceed to Checkout
+            </button>
+        </div>
+    </main>
+
+    <template id="cart-item-template">
+        <div class="cart-item fade-in">
+            <img class="item-image" src="" alt="">
+            <div class="item-details">
+                <h3 class="item-title"></h3>
+                <p class="item-price"></p>
+                <div class="quantity-controls">
+                    <button class="quantity-btn decrease">-</button>
+                    <span class="quantity"></span>
+                    <button class="quantity-btn increase">+</button>
+                </div>
+            </div>
+            <button class="remove-item">Remove</button>
+        </div>
+    </template>
+
+    <footer>
+        <p>&copy; 2025 Vinyl Haven. All rights reserved.</p>
+    </footer>
+
+    <script src="js/api.js"></script>
+    <script src="js/cart.js"></script>
+</body>
+</html>

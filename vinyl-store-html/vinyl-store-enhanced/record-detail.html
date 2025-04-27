@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Record Details - Vinyl Store</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/animations.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <img src="assets/icons/vinyl-icon.png" alt="Vinyl Store Logo">
+                <h1>Vinyl Store</h1>
+            </div>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="records.html">Browse Records</a>
+                <a href="cart.html">Cart <span id="cart-count">0</span></a>
+                <div class="auth-links">
+                    <a href="login.html" id="login-link">Login</a>
+                    <a href="register.html" id="register-link">Register</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <div class="record-detail-container">
+            <div id="record-detail" class="record-detail">
+                <div class="loading-spinner">Loading...</div>
+            </div>
+        </div>
+
+        <section class="record-info-tabs">
+            <div class="tab-buttons">
+                <button class="tab-button active" data-tab="tracklist">Tracklist</button>
+                <button class="tab-button" data-tab="description">Description</button>
+                <button class="tab-button" data-tab="specs">Specifications</button>
+                <button class="tab-button" data-tab="reviews">Reviews</button>
+            </div>
+
+            <div class="tab-content">
+                <div id="tracklist" class="tab-panel active">
+                    <div class="track-list">
+                        <!-- Tracks will be loaded dynamically -->
+                    </div>
+                </div>
+
+                <div id="description" class="tab-panel">
+                    <!-- Description will be loaded dynamically -->
+                </div>
+
+                <div id="specs" class="tab-panel">
+                    <!-- Specifications will be loaded dynamically -->
+                </div>
+
+                <div id="reviews" class="tab-panel">
+                    <div class="reviews-container">
+                        <div class="review-summary">
+                            <div class="rating-summary">
+                                <!-- Rating summary will be loaded dynamically -->
+                            </div>
+                            <button id="write-review" class="cta-button">Write a Review</button>
+                        </div>
+                        
+                        <div class="reviews-list">
+                            <!-- Reviews will be loaded dynamically -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div id="review-form" class="review-form modal hidden">
+            <div class="modal-content">
+                <h3>Write a Review</h3>
+                <form id="submit-review-form">
+                    <div class="rating-group">
+                        <label>Overall Rating</label>
+                        <div class="star-rating">
+                            <input type="radio" name="rating" value="5" id="star5"><label for="star5">★</label>
+                            <input type="radio" name="rating" value="4" id="star4"><label for="star4">★</label>
+                            <input type="radio" name="rating" value="3" id="star3"><label for="star3">★</label>
+                            <input type="radio" name="rating" value="2" id="star2"><label for="star2">★</label>
+                            <input type="radio" name="rating" value="1" id="star1"><label for="star1">★</label>
+                        </div>
+                    </div>
+
+                    <div class="rating-group">
+                        <label>Sound Quality Rating</label>
+                        <select name="soundQualityRating" required>
+                            <option value="">Select rating</option>
+                            <option value="5">5 - Excellent</option>
+                            <option value="4">4 - Very Good</option>
+                            <option value="3">3 - Good</option>
+                            <option value="2">2 - Fair</option>
+                            <option value="1">1 - Poor</option>
+                        </select>
+                    </div>
+
+                    <div class="rating-group">
+                        <label>Packaging Quality</label>
+                        <select name="packagingRating" required>
+                            <option value="">Select rating</option>
+                            <option value="5">5 - Excellent</option>
+                            <option value="4">4 - Very Good</option>
+                            <option value="3">3 - Good</option>
+                            <option value="2">2 - Fair</option>
+                            <option value="1">1 - Poor</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="review-comment">Your Review</label>
+                        <textarea id="review-comment" name="comment" rows="4" required></textarea>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="button" class="secondary-button" id="cancel-review">Cancel</button>
+                        <button type="submit" class="submit-review">Submit Review</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>About Us</h3>
+                <p>Vinyl Store is your premier destination for high-quality vinyl records. We offer a carefully curated selection of new and vintage records across all genres.</p>
+                <div class="social-links">
+                    <a href="#"><img src="assets/icons/facebook.svg" alt="Facebook"></a>
+                    <a href="#"><img src="assets/icons/twitter.svg" alt="Twitter"></a>
+                    <a href="#"><img src="assets/icons/instagram.svg" alt="Instagram"></a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="records.html">Browse Records</a></li>
+                    <li><a href="cart.html">Shopping Cart</a></li>
+                    <li><a href="login.html">Login</a></li>
+                    <li><a href="register.html">Register</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Categories</h3>
+                <ul>
+                    <li><a href="#">Rock</a></li>
+                    <li><a href="#">Jazz</a></li>
+                    <li><a href="#">Classical</a></li>
+                    <li><a href="#">Pop</a></li>
+                    <li><a href="#">Electronic</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Newsletter</h3>
+                <p>Subscribe to our newsletter for the latest releases and exclusive offers.</p>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Enter your email">
+                    <button type="submit">Subscribe</button>
+                </form>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Vinyl Store. All rights reserved.</p>
+        </div>
+    </footer>
+    <div id="notification-container"></div>
+
+    <script src="js/api.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/record-detail.js"></script>
+</body>
+</html>
